@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>simply-weather</id>
+    <version>0.2.2</version>
+    <title>Simply Weather</title>
+    <authors>Mike Ward</authors>
+    <owners>Mike Ward</owners>
+    <licenseUrl>https://github.com/mike-ward/Simply-Weather/blob/master/Simply%20Weather/License.rtf</licenseUrl>
+    <projectUrl>https://github.com/mike-ward/Simply-Weather</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>Weather without all the fuss</summary>
+    <description>Windows desktop weather without a simple, elegant interface.</description>
+    <releaseNotes>Initial Chocolatey release</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>Windows Desktop Weather</tags>
+    <dependencies>
+      <dependency id="DotNet4.5" />
+    </dependencies>
+  </metadata>
+</package>
