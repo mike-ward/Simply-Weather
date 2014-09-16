@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simply Weather", "Simply Weather\Simply Weather.csproj", "{46B8BE35-8822-4B41-86A1-F68D659C4A26}"
 EndProject
@@ -13,22 +13,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Setup", "Setup\Setup.vcxpro
 		{505F13DA-0FF3-4B14-8A30-86D8EB95F0AC} = {505F13DA-0FF3-4B14-8A30-86D8EB95F0AC}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{59192978-EB24-4447-B297-C69719FAA1D8}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://blueonionsoftware.visualstudio.com//defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Simply\u0020Weather\\Simply\u0020Weather.csproj
-		SccProjectName1 = Simply\u0020Weather
-		SccLocalPath1 = Simply\u0020Weather
-		SccProjectUniqueName2 = forecast.io\\Forecast.io.csproj
-		SccProjectName2 = forecast.io
-		SccLocalPath2 = forecast.io
-		SccProjectUniqueName3 = Setup\\Setup.vcxproj
-		SccProjectName3 = Setup
-		SccLocalPath3 = Setup
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
