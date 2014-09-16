@@ -1,4 +1,4 @@
-Simply-Weather
+Simply Weather
 ==============
 
 Simply Weather is, well, simply the weather. No garish ads or popups. Neat, simple and to the point.
