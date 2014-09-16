@@ -22,11 +22,6 @@ namespace SimplyWeather
 
         public MainWindow(WeatherPanel weatherPanel, SettingsPanel settingsPanel)
         {
-            if (BuildInfo.HasExpired())
-            {
-                Close();
-                return;
-            }
             InitializeComponent();
             SetWindowHeight();
             ApplyCommandBindings();
