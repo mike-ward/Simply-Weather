@@ -1,0 +1,49 @@
+﻿<m:WeatherData xmlns:m="clr-namespace:SimplyWeather.Models"
+               Location="Design Time Location"
+               CurrentTemperature="100"
+               FeelsLikeTemperature="104"
+               Icon="T"
+               Summary="Mostly Cloudy"
+               LongSummary="Clearing later in the week, highs peak on Saturday in the 30's with rain expected"
+               Humidity="78%"
+               Wind="5 mph SW"
+               Time="11:59am"
+               Alert="Wind Chill Warning for Washtenaw, MI"
+               AlertLink="http://alerts.weather.gov/cap/wwacapget.php?x=MI12513D200D00.WindChillWarning.12513D3EB250MI.DTXWSWDTX.17590594a11b009567dac09a092a2899"
+               PoweredBy="Powered by Forecast"
+               Link="http://forecast.io">
+  <m:WeatherData.Forecasts>
+    <m:WeatherForecast
+      Day="Today"
+      Icon="T"
+      Summary="Something aweful might happen"
+      High="103"
+      Low="90"
+      PrecipProbability="99%"
+      PrecipType="sleet"/>
+    <m:WeatherForecast
+      Day="Tuesday"
+      Icon="X"
+      Summary="Something aweful might happen unless it doesn't and then it will be quite boring"
+      High="103"
+      Low="90"
+      PrecipProbability="99%"
+      PrecipType="sleet"/>
+    <m:WeatherForecast
+      Day="Wednesday"
+      Icon="A"
+      Summary="Something aweful might happen again until this evening"
+      High="10"
+      Low="-10"
+      PrecipProbability="99%"
+      PrecipType="sleet"/>
+    <m:WeatherForecast
+      Day="Thursday"
+      Icon="B"
+      Summary="Something aweful might happen again until this evening"
+      High="80"
+      Low="40"
+      PrecipProbability="99%"
+      PrecipType="sleet"/>
+  </m:WeatherData.Forecasts>
+</m:WeatherData>

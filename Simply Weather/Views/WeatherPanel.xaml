@@ -1,0 +1,151 @@
+﻿<UserControl x:Class="SimplyWeather.WeatherPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:simplyweather="clr-namespace:SimplyWeather"
+             xmlns:models="clr-namespace:SimplyWeather.Models"
+             xmlns:converters="clr-namespace:SimplyWeather.Converters"
+             mc:Ignorable="d"
+             Margin="0 3 0 0"
+             d:DesignHeight="400"
+             d:DesignWidth="200"
+             d:DataContext="{d:DesignData Source=/Models/DesignTimeWeatherData.xaml}">
+  <UserControl.DataContext>
+    <models:WeatherData />
+  </UserControl.DataContext>
+  <UserControl.Resources>
+    <converters:BoolToStringConverter x:Key="BoolToString" />
+    <converters:InvertableBooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+  </UserControl.Resources>
+  <DockPanel>
+    <TextBlock Text="{Binding Location}"
+               Style="{StaticResource LocationStyle}"
+               Visibility="{Binding HasAlert, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverted}"
+               DockPanel.Dock="Top" />
+    <TextBlock Visibility="{Binding HasAlert, Converter={StaticResource BoolToVisibilityConverter}}"
+               Style="{StaticResource LocationStyle}"
+               DockPanel.Dock="Top">
+      <Hyperlink NavigateUri="{Binding AlertLink}" RequestNavigate="HyperlinkOnRequestNavigate">
+        <Run Text="{Binding Alert}" Foreground="DarkRed" />
+      </Hyperlink>
+    </TextBlock>
+    <Grid DockPanel.Dock="Bottom">
+      <TextBlock Style="{StaticResource PoweredByStyle}">
+        <Hyperlink NavigateUri="{Binding Link}"
+                   RequestNavigate="HyperlinkOnRequestNavigate">
+          <Run Text="{Binding PoweredBy}" />
+        </Hyperlink>
+      </TextBlock>
+      <TextBlock Text="{Binding Show7DayForecast, Converter={StaticResource BoolToString}, ConverterParameter='+|-', Mode=TwoWay}"
+                 Cursor="Hand"
+                 ToolTip="{Binding Show7DayForecast, Converter={StaticResource BoolToString}, ConverterParameter='7 Day Forecast|3 Day Forecast'}"
+                 Style="{StaticResource SwitchForecastButtonStyle}">
+        <TextBlock.InputBindings>
+          <MouseBinding MouseAction="LeftClick"
+                        Command="{x:Static simplyweather:MainWindow.Switch7DayForecastCommand}" />
+        </TextBlock.InputBindings>
+      </TextBlock>
+    </Grid>
+    <StackPanel Margin="5 0">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+          <TextBlock Text="{Binding Icon}"
+                     Style="{StaticResource CurrentWeatherIconStyle}" />
+          <TextBlock Text="{Binding Summary}"
+                     Style="{StaticResource CurrentSummaryStyle}" />
+        </StackPanel>
+        <StackPanel Grid.Column="1"
+                    Margin="10 5 0 0">
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding CurrentTemperature}"
+                       Style="{StaticResource CurrentTemperatureStyle}" />
+            <TextBlock Text="{Binding Celsius, Converter={StaticResource BoolToString}, ConverterParameter=+|*}"
+                       Style="{StaticResource UnitStyle}" />
+          </StackPanel>
+          <TextBlock>
+            <Run Text="Feels like" />
+            <Span>
+              <Span.Foreground>
+                <MultiBinding Converter="{converters:TemperatureAlertToColorConverter}">
+                <Binding Path="FeelsLikeTemperature" />
+                <Binding Path="Celsius" />
+                </MultiBinding>
+              </Span.Foreground>
+              <Run Text="{Binding FeelsLikeTemperature}" /><Run Text="&#176;" />
+            </Span>
+          </TextBlock>
+          <TextBlock Text="{Binding Wind}" />
+          <TextBlock>Humidity <Run Text="{Binding Humidity}" /></TextBlock>
+        </StackPanel>
+      </Grid>
+      <Separator Margin="0 5 0 2"
+                 Background="LightGray"/>
+      <TextBlock Text="{Binding LongSummary}"
+                 Height="47"
+                 TextWrapping="Wrap" />
+      <Separator Background="LightGray"/>
+      <ItemsControl ItemsSource="{Binding Forecasts}"
+                    Style="{StaticResource ForecastsItemControl}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3.3*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="5.2*" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="10" />
+              </Grid.RowDefinitions>
+              <StackPanel Grid.Row="0"
+                          Grid.Column="0">
+                <TextBlock Text="{Binding Day}"
+                           Style="{StaticResource ForecastDayStyle}" />
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Width="23">
+                    <TextBlock.Foreground>
+                      <MultiBinding Converter="{converters:TemperatureAlertToColorConverter}">
+                        <Binding Path="Low" />
+                        <Binding Path="DataContext.Celsius" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}" />
+                      </MultiBinding>
+                    </TextBlock.Foreground>
+                    <Run Text="{Binding Low}" /><Run Text="&#176;" />
+                  </TextBlock>
+                  <TextBlock Width="25" TextAlignment="Right">
+                    <TextBlock.Foreground>
+                      <MultiBinding Converter="{converters:TemperatureAlertToColorConverter}">
+                        <Binding Path="High" />
+                        <Binding Path="DataContext.Celsius" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}" />
+                      </MultiBinding>
+                    </TextBlock.Foreground>
+                    <Run Text="{Binding High}" Style="{StaticResource ForecastHighTempStyle}" /><Run Text="&#176;" />
+                  </TextBlock>
+                </StackPanel>
+                <TextBlock>
+                  <Run Text="{Binding PrecipProbability}" />
+                  <Run Text="{Binding PrecipType}" />
+                </TextBlock>
+              </StackPanel>
+              <TextBlock Text="{Binding Icon}"
+                         Grid.Row="0"
+                         Grid.Column="1"
+                         Style="{StaticResource ForecastIcon}" />
+              <TextBlock Text="{Binding Summary}"
+                         ToolTip="{Binding Summary}"
+                         Grid.Row="0"
+                         Grid.Column="2"
+                         Style="{StaticResource ForecastText}" />
+            </Grid>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+
+    </StackPanel>
+  </DockPanel>
+</UserControl>
