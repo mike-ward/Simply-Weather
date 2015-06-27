@@ -1,9 +1,9 @@
-﻿<mahControls:MetroWindow x:Class="SimplyWeather.MainWindow"
+﻿<controls:MetroWindow x:Class="SimplyWeather.MainWindow"
                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                         xmlns:mahControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                          xmlns:simplyWeather="clr-namespace:SimplyWeather"
                          xmlns:p="clr-namespace:SimplyWeather.Properties"
+                         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                          Style="{StaticResource MainWindowStyle}"
                          ResizeMode="NoResize"
                          ShowMaxRestoreButton="False"
@@ -14,10 +14,10 @@
                          Left="{Binding Source={x:Static p:Settings.Default}, Path=Left, Mode=TwoWay}"
                          Title="Simply Weather">
   <Window.TaskbarItemInfo>
-    <TaskbarItemInfo/>
+    <TaskbarItemInfo />
   </Window.TaskbarItemInfo>
-  <mahControls:MetroWindow.WindowCommands>
-    <mahControls:WindowCommands>
+  <controls:MetroWindow.RightWindowCommands>
+    <controls:WindowCommands>
       <Button Command="{x:Static simplyWeather:MainWindow.SettingsPanelCommand}">
         <StackPanel Orientation="Horizontal">
           <Rectangle Width="13"
@@ -29,8 +29,7 @@
           </Rectangle>
         </StackPanel>
       </Button>
-    </mahControls:WindowCommands>
-  </mahControls:MetroWindow.WindowCommands>
-  <Grid>
-  </Grid>
-</mahControls:MetroWindow>
+    </controls:WindowCommands>
+  </controls:MetroWindow.RightWindowCommands>
+  <Grid />
+</controls:MetroWindow>
