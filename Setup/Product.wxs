@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*"
+           Name="Simply Weather"
+           Language="1033"
+           Version="1.0.0"
+           Manufacturer="Mike Ward"
+           UpgradeCode="{12C8E63C-7217-4B42-8AEC-7CA3E283134E}">
+
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed."
+                  AllowDowngrades="no"
+                  AllowSameVersionUpgrades="yes" />
+    <Media Id="1" Cabinet="cab1.cab" EmbedCab="yes" />
+    <SetProperty Id="ProgramFilesFolder" Value="[LocalAppDataFolder]" Before="CostFinalize"><![CDATA[NOT Privileged]]></SetProperty>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Simply Weather">
+          <Component Id="ApplicationShortcut" Guid="{30EEDDBA-9F2C-44BA-8DE8-A01E61C68B30}">
+            <Shortcut Id="ApplicationStartMenuShortcut"
+                      Name="Weather for your desktop"
+                      Description="Desktop Simply Weather for Windows"
+                      Target="[INSTALLFOLDER]Simply.Weather.exe"
+                      WorkingDirectory="INSTALLFOLDER" />
+            <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+            <RegistryValue Root="HKCU" Key="Software\Microsoft\SimplyWeather" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <Directory Id="DesktopFolder" Name="Desktop">
+        <Component Id="ApplicationShortcutDesktop" Guid="{12B3435A-6F17-4484-8F9C-A0D93FF32A6A}">
+          <Shortcut Id="ApplicationDesktopShortcut"
+              Name="Simply Weather"
+              Description="Weather for your desktop"
+              Target="[INSTALLFOLDER]Simply.Weather.exe"
+              WorkingDirectory="INSTALLFOLDER" />
+          <RemoveFolder Id="DesktopFolder" On="uninstall" />
+          <RegistryValue Root="HKCU" Key="Software\Microsoft\SimplyWeather" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+        </Component>
+      </Directory>
+
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="Simply_Weather" Name="SimplyWeather">
+          <Directory Id="INSTALLFOLDER" Name="bin">
+            <Component Id="Simply.Weather.exe" Guid="{6347DBB7-6694-4069-8023-318B7322ACB9}">
+              <File Id="Simply.Weather.exe" KeyPath="yes" Source="$(var.SourceFiles)\Simply.Weather.exe" />
+            </Component>
+            <Component Id="Forecast.io.dll" Guid="{E0433E30-E063-49CC-A089-5F9ED0711F35}">
+              <File Id="Forecast.io.dll" KeyPath="yes" Source="$(var.SourceFiles)\Forecast.io.dll" />
+            </Component>
+            <Component Id="MahApps.Metro.dll" Guid="{0851E108-FC31-4B7E-90B8-D336416EA93D}">
+              <File Id="MahApps.Metro.dll" KeyPath="yes" Source="$(var.SourceFiles)\MahApps.Metro.dll" />
+            </Component>
+            <Component Id="System.Windows.Interactivity.dll" Guid="{3DD1CD5C-61EB-4947-8080-FDB26A240D12}">
+              <File Id="System.Windows.Interactivity.dll" KeyPath="yes" Source="$(var.SourceFiles)\System.Windows.Interactivity.dll" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <Directory Id="FontsFolder">
+        <Component Id="meteocons.ttf" Guid="{9EB1BEC8-8BA8-4F7F-B776-4F9CBDA36E83}">
+          <File Id="meteocons.ttf" TrueType="yes" Source="$(var.SourceFiles)\meteocons.ttf" />
+        </Component>
+      </Directory>
+    </Directory>
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_Minimal" />
+
+    <Property Id="SKIPFRAMEWORKCHECK" Value="0" />
+    <PropertyRef Id="NETFRAMEWORK45" />
+    <Condition Message="Simply Weather requires .NET Framework 4.5.2. Visit http://smallestdotnet.com">
+      <![CDATA[Installed OR (SKIPFRAMEWORKCHECK <> 0) OR (NETFRAMEWORK45 >= "#379893")]]>
+    </Condition>
+
+    <Feature Id="ProductFeature" Title="Simply Weather" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <ComponentRef Id="ApplicationShortcut" />
+      <ComponentRef Id="ApplicationShortcutDesktop" />
+      <ComponentRef Id="Simply.Weather.exe" />
+      <ComponentRef Id="Forecast.io.dll" />
+      <ComponentRef Id="MahApps.Metro.dll" />
+      <ComponentRef Id="System.Windows.Interactivity.dll" />
+      <ComponentRef Id="meteocons.ttf" />
+    </ComponentGroup>
+  </Product>
+</Wix>

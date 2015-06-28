@@ -40,26 +40,38 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <NMakeOutput>SimplyWeatherSetup.exe</NMakeOutput>
+    <NMakeOutput>$(ProjectDir)out\SimplyWeatherSetup.msi</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>"C:\Program Files (x86)\Inno Setup 5\iscc.exe" SimplyWeatherSetup.iss</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>Build.cmd</NMakeBuildCommandLine>
+    <OutDir>$(ProjectDir)out\</OutDir>
+    <IntDir>$(ProjectDir)out\</IntDir>
+    <NMakeReBuildCommandLine>Build.cmd</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>Build.cmd</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <NMakeOutput>SimplyWeatherSetup.exe</NMakeOutput>
+    <NMakeOutput>$(ProjectDir)out\SimplyWeatherSetup.msi</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>"C:\Program Files (x86)\Inno Setup 5\iscc.exe" SimplyWeatherSetup.iss</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>Build.cmd</NMakeBuildCommandLine>
+    <OutDir>$(ProjectDir)out\</OutDir>
+    <IntDir>$(ProjectDir)out\</IntDir>
+    <NMakeReBuildCommandLine>Build.cmd</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>Build.cmd</NMakeCleanCommandLine>
   </PropertyGroup>
-  <ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <BuildLog>
+      <Path>
+      </Path>
+    </BuildLog>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <BuildLog>
+      <Path>
+      </Path>
+    </BuildLog>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Simply Weather\License.rtf" />
-    <None Include="SimplyWeatherSetup.iss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="..\Simply Weather\meteocons.ttf" />
+    <None Include="Build.cmd" />
+    <None Include="Product.wxs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

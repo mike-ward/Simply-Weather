@@ -15,13 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="SimplyWeatherSetup.iss" />
-    <None Include="..\Simply Weather\License.rtf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="..\Simply Weather\meteocons.ttf" />
+    <None Include="Product.wxs" />
+    <None Include="Build.cmd" />
   </ItemGroup>
 </Project>
