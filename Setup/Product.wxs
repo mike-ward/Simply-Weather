@@ -20,8 +20,8 @@
         <Directory Id="ApplicationProgramsFolder" Name="Simply Weather">
           <Component Id="ApplicationShortcut" Guid="{30EEDDBA-9F2C-44BA-8DE8-A01E61C68B30}">
             <Shortcut Id="ApplicationStartMenuShortcut"
-                      Name="Weather for your desktop"
-                      Description="Desktop Simply Weather for Windows"
+                      Name="Simply Weather"
+                      Description="Weather for your desktop"
                       Target="[INSTALLFOLDER]Simply.Weather.exe"
                       WorkingDirectory="INSTALLFOLDER" />
             <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
