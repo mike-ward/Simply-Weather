@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>simply-weather</id>
-    <version>0.2.2</version>
+    <version>1.0.0</version>
     <title>Simply Weather</title>
     <authors>Mike Ward</authors>
     <owners>Mike Ward</owners>
@@ -11,11 +11,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Weather without all the fuss</summary>
     <description>Windows desktop weather without a simple, elegant interface.</description>
-    <releaseNotes>Initial Chocolatey release</releaseNotes>
-    <copyright>Copyright 2014</copyright>
+    <releaseNotes>Update installer, .NET, colors</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <iconUrl>http://imgur.com/dW9IDQK</iconUrl>
     <tags>Windows Desktop Weather</tags>
     <dependencies>
-      <dependency id="DotNet4.5" />
+      <dependency id="DotNet4.5.2" />
     </dependencies>
   </metadata>
 </package>

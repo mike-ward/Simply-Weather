@@ -1,1 +1,1 @@
-Install-ChocolateyPackage 'simply-weather' 'exe' '/SILENT' 'http://mike-ward.net/content/downloads/simplyweathersetup.exe'
+Install-ChocolateyPackage 'simply-weather' 'msi' '/qb SKIPFRAMEWORKCHECK="1"' 'https://github.com/mike-ward/Simply-Weather/releases/download/v1.0.0/SimplyWeatherSetup.msi'

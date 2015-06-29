@@ -16,6 +16,7 @@
   <Window.TaskbarItemInfo>
     <TaskbarItemInfo />
   </Window.TaskbarItemInfo>
+
   <controls:MetroWindow.RightWindowCommands>
     <controls:WindowCommands>
       <Button Command="{x:Static simplyWeather:MainWindow.SettingsPanelCommand}">

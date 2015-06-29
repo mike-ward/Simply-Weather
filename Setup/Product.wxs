@@ -62,7 +62,7 @@
       </Directory>
 
       <Directory Id="FontsFolder">
-        <Component Id="meteocons.ttf" Guid="{9EB1BEC8-8BA8-4F7F-B776-4F9CBDA36E83}">
+        <Component Id="meteocons.ttf" Guid="{9EB1BEC8-8BA8-4F7F-B776-4F9CBDA36E83}" Permanent="yes">
           <File Id="meteocons.ttf" TrueType="yes" Source="$(var.SourceFiles)\meteocons.ttf" />
         </Component>
       </Directory>
